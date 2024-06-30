@@ -6,18 +6,18 @@ For one to get access to the code, just click on the ...link: https://github.com
 
 # Speed Points Calculator
 
-# Introduction
+## Introduction
 
 This JavaScript program calculates the demerit points based on the speed of a vehicle. If the speed exceeds the speed limit, it determines whether the driver should receive a go ahead, demerit points, or have their license suspended.
 
-# Table of contents
+### Table of contents
 
--How the code works
--THe code itself
--More explanation on the code
--How to customize the code
+- [How the code works](#how-the-code-works)
+- [The code itself](#the-code-itself)
+- [More explanation on the](#more-explanation-on-the-code)
+- [How to customize the code](#how-to-customize-the-code-1)
 
-# How the code works
+### How the code works
 
 This program checks on the speed of a vehicle in reference to a speed limit of 70. Based on the speed, it returns:
 
@@ -26,7 +26,7 @@ This program checks on the speed of a vehicle in reference to a speed limit of 7
 The number of demerit points if the speed exceeds 70. One demerit point is added for every 5 km/h over the speed limit.
 Wheras the is "License Suspended" if the number of demerit points exceeds 12.
 
-# The code itself
+### The code itself
 
 const speed = 140;
 
@@ -45,7 +45,7 @@ return demerit;
 
 console.log(speedPoints());
 
-# More explanation on the code
+### More explanation on the code
 
 -Declaring the Variable:
 
@@ -71,7 +71,7 @@ For the provided example, the output will be:
 14
 This is because the value of speed (140) results in 14 demerit points ((140 - 70) / 5).
 
-# How to customize the code
+### How to customize the code
 
 To use this code with a different speed, simply change the value of the speed variable:
 
@@ -79,7 +79,7 @@ const speed = 85;
 console.log(speedPoints()); // Output will be 3
 You can also adjust the speed limit by adjusting the conditions within the speedPoints() function.
 
-## Students Grade Calculator
+# Students Grade Calculator
 
 This code is very simple and understandable in calculating the marks and grades of a given number of students in a specific institution.The grading system used follows the criteria below:
 
@@ -89,18 +89,18 @@ Grade C for marks that are between 49 and 59
 Grade D for marks that are between 40 and 49
 Grade E for marks that are less than 40
 
-# Table of contents
+### Table of contents
 
--How the code can be used
--How the code is
--Explanation of the code
--How to customize the code
+- [How the code can be used](#how-the-code-can-be-used)
+- [How the code is](#how-the-code-is)
+- [Explanation of the code](#explanation-of-the-code)
+- [How to customize the code](#how-to-customize-the-code)
 
-# How the code can be used
+### How the code can be used
 
 The code can be run in any JavaScript workspace. The example provided uses a fixed value for marks (67) and determines the corresponding grade.
 
-# How the code is
+### How the code is
 
 let marks = 67; //67 is an example of marks between 0-100.
 
@@ -117,7 +117,7 @@ return "D";
 }
 console.log(inputofStudentMarks());
 
-# Explanation of the code
+### Explanation of the code
 
 Variable Declaration:
 
@@ -134,7 +134,7 @@ For the provided example, the output will be:
 B
 And this is because the value of marks (67) falls within the range for grade B (60 to 79).
 
-# How to customize the code
+### How to customize the code
 
 To use this code with different marks, simply change the value of the marks variable:
 
@@ -142,22 +142,20 @@ let marks = 85;
 console.log(inputofStudentMarks()); // Output will be grade "A"
 You can also modify the grading criteria by adjusting the conditions within the inputofStudentMarks() function.
 
-## Net Salary Calculator
+# Net Salary Calculator
 
 This JavaScript program calculates the net salary of an employee based on their gross salary, benefits, and various deductions. The program includes functions for calculating PAYE (Pay As You Earn) tax, NHIF (National Hospital Insurance Fund) deductions, NSSF (National Social Security Fund) deductions, and other statutory deductions.
 
-# Table of Contents
+### Table of Contents
 
--Functions of the code
--PAYE(taxableIncome)
--NHIF(grossSalary)
--NSSF(grossSalary)
--netSalaryCalculator()
--How the code is used
+- [Functions of the code](#functions-of-the-code)
+- [PAYE(taxableIncome)](#payetaxableincome)
+- [NHIF(grossSalary)](#nhifgrosssalary)
+- [NSSF(grossSalary)](#nssfgrosssalary)
+- [netSalaryCalculator()](#net-salary-calculator)
 
-# Functions of the code
+### PAYE(taxableIncome)
 
-PAYE(taxableIncome)
 Calculates the PAYE tax based on the taxable income.
 
 function PAYE(taxableIncome) {
@@ -167,16 +165,16 @@ paye = taxableIncome _ 0.1;
 } else if (taxableIncome <= 32333) {
 paye = 2400 + (taxableIncome - 24000) _ 0.25;
 } else if (taxableIncome <= 500000) {
-paye = 4225 + (taxableIncome - 32333) _ 0.3;
+paye = 4483 + (taxableIncome - 32333) _ 0.3;
 } else if (taxableIncome <= 800000) {
-paye = 134925 + (taxableIncome - 500000) _ 0.325;
+paye = 142700 + (taxableIncome - 500000) _ 0.325;
 } else {
-paye = 232425 + (taxableIncome - 800000) \* 0.35;
+paye = 282400 + (taxableIncome - 800000) \* 0.35;
 }
 return paye;
 }
 
-# NHIF(grossSalary)
+### NHIF(grossSalary)
 
 Calculates the NHIF deduction based on the gross salary.
 
@@ -221,7 +219,7 @@ nhifDeduction = 1700;
 return nhifDeduction;
 }
 
-# NSSF(grossSalary)
+### NSSF(grossSalary)
 
 Calculates the NSSF deduction based on the gross salary.
 
@@ -235,7 +233,7 @@ let nssfDeductionTier2 = Math.max(0, Math.min(grossSalary - tier2Limit));
 return nssfDeductionTier1 + nssfDeductionTier2;
 }
 
-# netSalaryCalculator()
+### netSalaryCalculator()
 
 Calculates the net salary based on the gross salary, benefits, and various deductions.
 
@@ -264,7 +262,7 @@ console.log(netSalaryCalc);
 How the code is used
 To use the net salary calculator, call the netSalaryCalculator function. This function uses predefined values for basic salary and benefits, calculates various deductions, and logs the gross salary, PAYE, NHIF deduction, NSSF deduction, housing levy, and net salary to the console.
 
-# netSalaryCalculator();
+### netSalaryCalculator();
 
 Example Output
 
