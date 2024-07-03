@@ -38,7 +38,6 @@ Wheras the is "License Suspended" if the number of demerit points exceeds 12.
 
 ### The code itself
 
-const speed = 140;
 function speedPoints() {
 const speed = parseInt(prompt("Enter speed car speed in (Km/h):"));
 
@@ -47,9 +46,9 @@ return "Ok";
 } else if (speed > 70) {
 const demerit = Math.floor((speed - 70) / 5);
 if (demerit > 12) {
-return "License Suspended";
+console.log("License suspended");
 } else {
-return demerit;
+console.log("Points: " + demerit);
 }
 }
 }
@@ -112,8 +111,6 @@ The code can be run in any JavaScript workspace. The example provided uses a fix
 
 ### How the code is
 
-let marks = 67; //67 is an example of marks between 0-100.
-
 function inputofStudentMarks() {
 const marks = parseInt(prompt("Input Student marks:"));
 console.log(marks);
@@ -171,8 +168,8 @@ This JavaScript program calculates the net salary of an employee based on their 
 ### PAYE(taxableIncome)
 
 // Declaring input for basic salary and benefits
-const basicSalaryInput = prompt("Enter basic salary: ");
-const benefitsInput = prompt("Enter benefits: ");
+const inputBasicSalary = prompt("Enter basic salary: ");
+const inputBenefits = prompt("Enter benefits: ");
 
 // Converts the inputs strings to Numbers
 const basicSalary = parseFloat(inputBasicSalary);
@@ -208,7 +205,6 @@ return 10890 + (grossSalary - 56395) _ 0.25;
 return 15190 + (grossSalary - 71695) \* 0.3;
 }
 return paye;
-}
 
 ### NHIF(grossSalary)
 
@@ -254,6 +250,14 @@ nhifDeduction = 1700;
 
 ### netSalaryCalculator
 
+//Calculations of the NHIF Deductions
+const nhif = NHIF(grossSalary);
+console.log(`NHIF Deductions: ${nhif}`);
+
+//Calculations of the PAYE
+const paye = payeCalculations(grossSalary);
+console.log(`PAYE: ${paye}`);
+
 // Calculations of the NSSF Deductions
 const nssfDeductions = grossSalary \* 0.06;
 console.log(`NSSF Deductions: ${nssfDeductions}`);
@@ -261,14 +265,3 @@ console.log(`NSSF Deductions: ${nssfDeductions}`);
 // Calculations of the Housing Levy
 const housingLevy = grossSalary \* 0.015;
 console.log(`Housing Levy: ${housingLevy}`);
-
-// Calculations of the Net Salary
-const netSalary = grossSalary - paye - nhif - nssfDeductions - housingLevy;
-console.log(`Net Salary: ${netSalary}`);
-
-const nhif = calculateNHIF(grossSalary);
-console.log(`NHIF Deductions: ${nhif}`);
-
-//Calculations of the PAYE
-const paye = payeCalculations(grossSalary);
-console.log(`PAYE: ${paye}`);
