@@ -5,13 +5,13 @@ function inputofStudentMarks() {
     //For marks less than 0, marks greater than 100 and value that is Not a Number(NaN)
     return "Invalid marks";
   } else if (marks > 79) {
-    return "A"; //Marks greater than 79 return Grade A
+    return "A"; //Marks greater than 79 output Grade A
   } else if (marks <= 79 && marks >= 60) {
-    return "B"; //Marks greater than 59 and less than 80 return Grade B
+    return "B"; //Marks greater than 59 and less than 80 output Grade B
   } else if (marks <= 59 && marks >= 49) {
-    return "C"; //Marks greater than 48 and less than 60 return Grade C
+    return "C"; //Marks greater than 48 and less than 60 output Grade C
   } else if (marks <= 49 && marks >= 40) {
-    return "D"; //Marks greater than 39 and less than 79 return Grade D
-  } else return "E"; //Marks less than 40 return Grade E
+    return "D"; //Marks greater than 39 and less than 79 output Grade D
+  } else return "E"; //Marks less than 40 output Grade E
 }
 console.log(inputofStudentMarks());

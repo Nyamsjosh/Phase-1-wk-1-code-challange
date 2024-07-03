@@ -10,9 +10,9 @@
 
 2. Then open the index.Html file in a code editor and go live to view it in your preferd browser.
 
-3. When the browser opens you'll see a pop up on top asing you to input your values
+3. When the browser opens you'll see a pop up on top asking you to input your values
 
-4. And then while in the browser click on ctr+shit+c on your keyboard and go to console to view your output.
+4. And then while in the browser click on F12 on your keyboard and go to console to view your output.
 
 # Speed Points Calculator
 
@@ -39,12 +39,12 @@ Wheras the is "License Suspended" if the number of demerit points exceeds 12.
 ### The code itself
 
 function speedPoints() {
-const speed = parseInt(prompt("Enter speed car speed in (Km/h):"));
-
+const speed = parseInt(prompt("Enter speed car speed in (Km/h):")); //Declaring input for speed
 if (speed <= 70) {
+//For speed less than 69 outputs Ok
 return "Ok";
 } else if (speed > 70) {
-const demerit = Math.floor((speed - 70) / 5);
+const demerit = Math.floor((speed - 70) / 5); //Declaring demerit point
 if (demerit > 12) {
 console.log("License suspended");
 } else {
@@ -112,19 +112,20 @@ The code can be run in any JavaScript workspace. The example provided uses a fix
 ### How the code is
 
 function inputofStudentMarks() {
-const marks = parseInt(prompt("Input Student marks:"));
+const marks = parseInt(prompt("Input Student marks:")); //Declaring input for marks
 console.log(marks);
 if (marks < 0 || marks > 100 || isNaN(marks) || typeof marks !== "number") {
+//For marks less than 0, marks greater than 100 and value that is Not a Number(NaN)
 return "Invalid marks";
 } else if (marks > 79) {
-return "A";
+return "A"; //Marks greater than 79 output Grade A
 } else if (marks <= 79 && marks >= 60) {
-return "B";
+return "B"; //Marks greater than 59 and less than 80 output Grade B
 } else if (marks <= 59 && marks >= 49) {
-return "C";
+return "C"; //Marks greater than 48 and less than 60 output Grade C
 } else if (marks <= 49 && marks >= 40) {
-return "D";
-} else return "E";
+return "D"; //Marks greater than 39 and less than 79 output Grade D
+} else return "E"; //Marks less than 40 output Grade E
 }
 console.log(inputofStudentMarks());
 
