@@ -1,8 +1,18 @@
 # Phase-1-wk-1-code-challange
 
-# INSRUCTIONS
+# How to run the code
 
-For one to get access to the code, just click on the ...link: https://github.com/Nyamsjosh/Phase-1-wk-1-code-challange ...and it will take you to the git hub repository where it is stored.
+1. For one to get access to the code, just click on the ...link below:
+
+   https://github.com/Nyamsjosh/Phase-1-wk-1-code-challange
+
+...and it will take you to the git hub repository where it is stored.
+
+2. Then open the index.Html file in a code editor and go live to view it in your preferd browser.
+
+3. When the browser opens you'll see a pop up on top asing you to input your values
+
+4. And then while in the browser click on ctr+shit+c on your keyboard and go to console to view your output.
 
 # Speed Points Calculator
 
@@ -29,8 +39,9 @@ Wheras the is "License Suspended" if the number of demerit points exceeds 12.
 ### The code itself
 
 const speed = 140;
-
 function speedPoints() {
+const speed = parseInt(prompt("Enter speed car speed in (Km/h):"));
+
 if (speed <= 70) {
 return "Ok";
 } else if (speed > 70) {
@@ -42,7 +53,6 @@ return demerit;
 }
 }
 }
-
 console.log(speedPoints());
 
 ### More explanation on the code
@@ -105,7 +115,11 @@ The code can be run in any JavaScript workspace. The example provided uses a fix
 let marks = 67; //67 is an example of marks between 0-100.
 
 function inputofStudentMarks() {
-if (marks > 79) {
+const marks = parseInt(prompt("Input Student marks:"));
+console.log(marks);
+if (marks < 0 || marks > 100 || isNaN(marks) || typeof marks !== "number") {
+return "Invalid marks";
+} else if (marks > 79) {
 return "A";
 } else if (marks <= 79 && marks >= 60) {
 return "B";
@@ -151,38 +165,58 @@ This JavaScript program calculates the net salary of an employee based on their 
 - [Functions of the code](#functions-of-the-code)
 - [PAYE(taxableIncome)](#payetaxableincome)
 - [NHIF(grossSalary)](#nhifgrosssalary)
-- [NSSF(grossSalary)](#nssfgrosssalary)
-- [netSalaryCalculator()](#net-salary-calculator)
+
+- [netSalaryCalculator](#net-salary-calculator)
 
 ### PAYE(taxableIncome)
 
-Calculates the PAYE tax based on the taxable income.
+// Declaring input for basic salary and benefits
+const basicSalaryInput = prompt("Enter basic salary: ");
+const benefitsInput = prompt("Enter benefits: ");
 
-function PAYE(taxableIncome) {
+// Converts the inputs strings to Numbers
+const basicSalary = parseFloat(inputBasicSalary);
+const benefits = parseFloat(inputBenefits);
+
+// Checking for input that is invalid.
+if (
+isNaN(basicSalary) ||
+isNaN(benefits) ||
+basicSalary <= 0 ||
+benefits <= 0
+) {
+console.log(
+"Invalid input. Please enter valid numbers that are greater than 0 for Basic salary and Benefits."
+);
+}
+// Calculation of the gross Salary
+const grossSalary = basicSalary + benefits;
+console.log(`Gross Salary: ${grossSalary}`);
+
+//Calculation of the PAYE Tax
+function payeCalculations(grossSalary) {
 let paye = 0;
-if (taxableIncome <= 2400) {
-paye = taxableIncome _ 0.1;
-} else if (taxableIncome <= 32333) {
-paye = 2400 + (taxableIncome - 24000) _ 0.25;
-} else if (taxableIncome <= 500000) {
-paye = 4483 + (taxableIncome - 32333) _ 0.3;
-} else if (taxableIncome <= 800000) {
-paye = 142700 + (taxableIncome - 500000) _ 0.325;
+if (grossSalary <= 28895) {
+return grossSalary _ 0.1;
+} else if (grossSalary <= 38895) {
+return 2890 + (grossSalary - 28895) _ 0.15;
+} else if (grossSalary <= 56395) {
+return 5890 + (grossSalary - 38895) _ 0.2;
+} else if (grossSalary <= 71695) {
+return 10890 + (grossSalary - 56395) _ 0.25;
 } else {
-paye = 282400 + (taxableIncome - 800000) \* 0.35;
+return 15190 + (grossSalary - 71695) \* 0.3;
 }
 return paye;
 }
 
 ### NHIF(grossSalary)
 
-Calculates the NHIF deduction based on the gross salary.
-
 function NHIF(grossSalary) {
 let nhifDeduction = 0;
 
 if (grossSalary <= 5999) {
-nhifDeduction = 150; // NHIF Deductions
+nhifDeduction = 150; //Calculations of the NHIF Deductions
 } else if (grossSalary <= 7999) {
 nhifDeduction = 300;
 } else if (grossSalary <= 11999) {
@@ -216,60 +250,25 @@ nhifDeduction = 1600;
 } else {
 nhifDeduction = 1700;
 }
-return nhifDeduction;
 }
 
-### NSSF(grossSalary)
+### netSalaryCalculator
 
-Calculates the NSSF deduction based on the gross salary.
+// Calculations of the NSSF Deductions
+const nssfDeductions = grossSalary \* 0.06;
+console.log(`NSSF Deductions: ${nssfDeductions}`);
 
-function NSSF(grossSalary) {
-const tier1Limit = 7000;
-const tier2Limit = 36000;
-
-let nssfDeductionTier1 = Math.min(grossSalary, tier1Limit) \* 0.06;
-let nssfDeductionTier2 = Math.max(0, Math.min(grossSalary - tier2Limit));
-
-return nssfDeductionTier1 + nssfDeductionTier2;
-}
-
-### netSalaryCalculator()
-
-Calculates the net salary based on the gross salary, benefits, and various deductions.
-
-function netSalaryCalculator() {
-const basicSalary = 30000;
-const benefits = 10000;
-const grossSalary = basicSalary + benefits;
-const taxableIncome = grossSalary;
-
-const paye = PAYE(taxableIncome);
-const nhifDeduction = NHIF(grossSalary);
-const nssfDeduction = NSSF(grossSalary);
-
-const personalRelief = 2400;
+// Calculations of the Housing Levy
 const housingLevy = grossSalary \* 0.015;
-const netSalaryCalc =
-grossSalary - paye - nhifDeduction - nssfDeduction - housingLevy;
-console.log(grossSalary);
-console.log(paye);
-console.log(nhifDeduction);
-console.log(nssfDeduction);
-console.log(housingLevy);
-console.log(netSalaryCalc);
-}
+console.log(`Housing Levy: ${housingLevy}`);
 
-How the code is used
-To use the net salary calculator, call the netSalaryCalculator function. This function uses predefined values for basic salary and benefits, calculates various deductions, and logs the gross salary, PAYE, NHIF deduction, NSSF deduction, housing levy, and net salary to the console.
+// Calculations of the Net Salary
+const netSalary = grossSalary - paye - nhif - nssfDeductions - housingLevy;
+console.log(`Net Salary: ${netSalary}`);
 
-### netSalaryCalculator();
+const nhif = calculateNHIF(grossSalary);
+console.log(`NHIF Deductions: ${nhif}`);
 
-Example Output
-
-40000
-4225
-850
-0
-600
-34325
-This output is based on a gross salary of 40000, which includes a basic salary of 30000 and benefits of 10000.
+//Calculations of the PAYE
+const paye = payeCalculations(grossSalary);
+console.log(`PAYE: ${paye}`);
