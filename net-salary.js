@@ -1,6 +1,6 @@
 // Declaring input for basic salary and benefits
-const basicSalaryInput = prompt("Enter basic salary: ");
-const benefitsInput = prompt("Enter benefits: ");
+const inputBasicSalary = prompt("Enter basic salary: ");
+const inputBenefits = prompt("Enter benefits: ");
 
 // Converts the inputs strings to Numbers
 const basicSalary = parseFloat(inputBasicSalary);
@@ -78,6 +78,13 @@ function NHIF(grossSalary) {
   }
 }
 
+const nhif = NHIF(grossSalary);
+console.log(`NHIF Deductions: ${nhif}`);
+
+//Calculations of the PAYE
+const paye = payeCalculations(grossSalary);
+console.log(`PAYE: ${paye}`);
+
 // Calculations of the NSSF Deductions
 const nssfDeductions = grossSalary * 0.06;
 console.log(`NSSF Deductions: ${nssfDeductions}`);
@@ -89,10 +96,3 @@ console.log(`Housing Levy: ${housingLevy}`);
 // Calculations of the Net Salary
 const netSalary = grossSalary - paye - nhif - nssfDeductions - housingLevy;
 console.log(`Net Salary: ${netSalary}`);
-
-const nhif = calculateNHIF(grossSalary);
-console.log(`NHIF Deductions: ${nhif}`);
-
-//Calculations of the PAYE
-const paye = payeCalculations(grossSalary);
-console.log(`PAYE: ${paye}`);
