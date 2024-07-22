@@ -1,6 +1,8 @@
 function speedPoints() {
   const speed = parseInt(prompt("Enter speed car speed in (Km/h):")); //Declaring input for speed
-  if (speed <= 70) {
+  if (speed < 0) {
+    return "Enter valid speed";
+  } else if (speed <= 70) {
     //For speed less than 69 outputs Ok
     return "Ok";
   } else if (speed > 70) {

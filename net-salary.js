@@ -1,98 +1,114 @@
-// Declaring input for basic salary and benefits
-const inputBasicSalary = prompt("Enter basic salary: ");
-const inputBenefits = prompt("Enter benefits: ");
-
-// Converts the inputs strings to Numbers
-const basicSalary = parseFloat(inputBasicSalary);
-const benefits = parseFloat(inputBenefits);
-
-// Checking for input that is invalid.
-if (
-  isNaN(basicSalary) ||
-  isNaN(benefits) ||
-  basicSalary <= 0 ||
-  benefits <= 0
-) {
-  console.log(
-    "Invalid input. Please enter valid numbers that are greater than 0 for Basic salary and Benefits."
-  );
-}
-// Calculation of the gross Salary
-const grossSalary = basicSalary + benefits;
-console.log(`Gross Salary: ${grossSalary}`);
-
-//Calculation of the PAYE Tax
-function payeCalculations(grossSalary) {
-  let paye = 0;
-  if (grossSalary <= 28895) {
-    return grossSalary * 0.1;
-  } else if (grossSalary <= 38895) {
-    return 2890 + (grossSalary - 28895) * 0.15;
-  } else if (grossSalary <= 56395) {
-    return 5890 + (grossSalary - 38895) * 0.2;
-  } else if (grossSalary <= 71695) {
-    return 10890 + (grossSalary - 56395) * 0.25;
+function paye(taxableIncome) {
+  let paye = 0
+  if (taxableIncome <= 24000) {
+    paye = taxableIncome * 0.1
+  } else if (taxableIncome <= 32333) {
+    paye = 2400 + (taxableIncome - 24000) * 0.25
+  } else if (taxableIncome <= 500000) {
+    paye = 4483.25 + (taxableIncome - 32333) * 0.3
+  } else if (taxableIncome <= 800000) {
+    paye = 144783.35 + (taxableIncome - 500000) * 0.325
   } else {
-    return 15190 + (grossSalary - 71695) * 0.3;
+    paye = 242083.25 + (taxableIncome - 800000) * 0.35
   }
-  return paye;
+  return paye
 }
 
-function NHIF(grossSalary) {
-  let nhifDeduction = 0;
-
+function nhif(grossSalary) {
+  let nhif = 0
+  // NHIF deductions
   if (grossSalary <= 5999) {
-    nhifDeduction = 150; //Calculations of the NHIF Deductions
+    nhif = 150
   } else if (grossSalary <= 7999) {
-    nhifDeduction = 300;
+    nhif = 300
   } else if (grossSalary <= 11999) {
-    nhifDeduction = 400;
+    nhif = 400
   } else if (grossSalary <= 14999) {
-    nhifDeduction = 500;
+    nhif = 500
   } else if (grossSalary <= 19999) {
-    nhifDeduction = 600;
+    nhif = 600
   } else if (grossSalary <= 24999) {
-    nhifDeduction = 750;
+    nhif = 750
   } else if (grossSalary <= 29999) {
-    nhifDeduction = 850;
+    nhif = 850
   } else if (grossSalary <= 34999) {
-    nhifDeduction = 900;
+    nhif = 900
   } else if (grossSalary <= 39999) {
-    nhifDeduction = 950;
+    nhif = 950
   } else if (grossSalary <= 44999) {
-    nhifDeduction = 1000;
+    nhif = 1000
   } else if (grossSalary <= 49999) {
-    nhifDeduction = 1100;
+    nhif = 1100
   } else if (grossSalary <= 59999) {
-    nhifDeduction = 1200;
+    nhif = 1200
   } else if (grossSalary <= 69999) {
-    nhifDeduction = 1300;
+    nhif = 1300
   } else if (grossSalary <= 79999) {
-    nhifDeduction = 1400;
+    nhif = 1400
   } else if (grossSalary <= 89999) {
-    nhifDeduction = 1500;
+    nhif = 1500
   } else if (grossSalary <= 99999) {
-    nhifDeduction = 1600;
+    nhif = 1600
   } else {
-    nhifDeduction = 1700;
+    nhif = 1700
   }
+
+  return nhif
 }
 
-const nhif = NHIF(grossSalary);
-console.log(`NHIF Deductions: ${nhif}`);
+function nssf(grossSalary) {
+  const tier1Limit = 7000
+  const tier2Limit = 36000
 
-//Calculations of the PAYE
-const paye = payeCalculations(grossSalary);
-console.log(`PAYE: ${paye}`);
+  let nssfTier1 = Math.min(grossSalary, tier1Limit) * 0.06
+  let nssfTier2 =
+    Math.max(0, Math.min(grossSalary - tier1Limit, tier2Limit - tier1Limit)) *
+    0.06
 
-// Calculations of the NSSF Deductions
-const nssfDeductions = grossSalary * 0.06;
-console.log(`NSSF Deductions: ${nssfDeductions}`);
+  return nssfTier1 + nssfTier2
+}
+//Calculations of the net Salary
+function netSalaryCalculator() {
+  const basicSalary = parseFloat(prompt('Enter basic salary:'))
+  const benefits = parseFloat(prompt('Enter benefits:'))
 
-// Calculations of the Housing Levy
-const housingLevy = grossSalary * 0.015;
-console.log(`Housing Levy: ${housingLevy}`);
+  if (
+    isNaN(basicSalary) ||
+    basicSalary < 0 ||
+    isNaN(benefits) ||
+    benefits < 0
+  ) {
+    console.error(
+      'Invalid input. Please enter valid numeric values for salary and benefits.'
+    )
+    return
+  }
+  // Calculations of the gross salary
+  const grossSalary = basicSalary + benefits
+  // Calculations of the taxable income
+  const taxableIncome = grossSalary
 
-// Calculations of the Net Salary
-const netSalary = grossSalary - paye - nhif - nssfDeductions - housingLevy;
-console.log(`Net Salary: ${netSalary}`);
+  // Calculations of the deductions
+  const payeAmount = paye(taxableIncome)
+  const nhifAmount = nhif(grossSalary)
+  const nssfAmount = nssf(grossSalary)
+
+  const personalRelief = 2400
+  const housingLevy = grossSalary * 0.015
+  const netSalary =
+    grossSalary -
+    payeAmount -
+    nhifAmount -
+    nssfAmount -
+    housingLevy +
+    personalRelief
+
+  console.log(`Gross Salary: ${grossSalary}`)
+  console.log(`PAYE: ${payeAmount}`)
+  console.log(`NHIF: ${nhifAmount}`)
+  console.log(`NSSF: ${nssfAmount}`)
+  console.log(`Housing Levy: ${housingLevy}`)
+  console.log(`Net Salary: ${netSalary}`)
+}
+
+netSalaryCalculator()
